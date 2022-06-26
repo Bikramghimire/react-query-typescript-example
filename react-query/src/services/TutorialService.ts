@@ -1,4 +1,5 @@
 import axios from "axios";
+import Tutorial from "../types/Tutorial";
 const token =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmI2YjhiMmE1YjU3MDAwMTczODAwOTAiLCJpYXQiOjE2NTYxNDIwMDN9.2smk4QW-g2SQhLQUxUZWd-GIW28SSvvScFhd7x3sWQE";
 const apiClient = axios.create({
@@ -10,11 +11,17 @@ const apiClient = axios.create({
 });
 
 const findAll = async () => {
-  const response = await apiClient.get("/task");
-  return response;
+  const { data } = await apiClient.get("/task");
+  return data;
+};
+
+const create = async ({ description }: Tutorial) => {
+  const { data } = await apiClient.post("/task", { description });
+  return data;
 };
 
 const tutorialSevice = {
   findAll,
+  create,
 };
 export default tutorialSevice;

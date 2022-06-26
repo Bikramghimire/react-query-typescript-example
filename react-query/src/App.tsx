@@ -1,16 +1,21 @@
 import React, { useEffect } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import "./App.css";
-import tutorialSevice from "./services/TutorialService";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./components/home/Home";
 
 function App() {
-  useEffect(() => {
-    const data = tutorialSevice.findAll();
-    console.log("the data is=========", data);
-  }, []);
   return (
     <div className="App">
-      <p>hello world</p>
+      <BrowserRouter>
+        <p>hello to react-query</p>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          {/* <Route path="/alltutorials" element={<TutorialList />} />
+          <Route path="/tutorialform" element={<Form />} /> */}
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
